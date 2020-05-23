@@ -4,7 +4,7 @@ LANG: PYTHON2
 TASK: gift1
 """
 fin = open("gift1.in", "r")
-fout = open ('gift1.out', 'w')
+fout = open ('gift1.out', 'a')
 
 #get data into var
 x = fin.read().split('\n')
@@ -25,6 +25,7 @@ print(data)
 while data != []:
     giver = data.pop(0)
     amt_rec = data.pop(0).split(' ')
+    print(amt_rec)
     amount = int(amt_rec[0])
     num_rec = int(amt_rec[1])
     participant[giver] -= amount
@@ -37,7 +38,11 @@ while data != []:
     for i in range(num_rec):
         receiver = data.pop(0)
         participant[receiver] += amount/num_rec
-
+    fout
+for part in participant:
+    output = part + ' ' + str(participant[part]) + '\n'
+    fout.write(output)
+fout.close()
 
 print(participant)
 
