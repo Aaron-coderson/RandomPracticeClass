@@ -22,40 +22,53 @@ def checkIfLeapYear(year):
     else:
         return False
 
-def whichday(day,v,contwer):
-    def firstday(day,v,contwer):
-        y = v
-        d = day
-        m = countwr
-        firstday = d + (2*m) + ([3(m + 1) / 5]-[3(m + 1) % 5]) + y + ([y / 4]-[y%4]) - ([y / 100]-[y%100]) + ([y / 400]-[y%400]) + 2
-        """
-        where d is the number or the day of the month, m is the number of the 
-        month, and y is the year
-        """
-        return(firstday)
-    firstday = firstday(day,v,contwer)
-    dayis = firstday
-    if dayis ==1:
-        return('monday')
-    elif dayis ==2:
-        return('tuesday')
-    elif dayis ==3:
-        return('wednesday')
-    elif dayis ==4:
-        return('thursday')
-    elif dayis ==5:
-        return('friday')
-    elif dayis ==6:
-        return('saturday')
-    elif dayis ==7:
+def whichday(day,v,contwr):
+
+    year = int(v)
+    #print(year)
+    date = int(day)
+    #print(date)
+    month = int(contwr)
+    if month ==1:
+        month = 13
+        year -= 1
+    elif month ==2:
+        month = 14
+        year -= 1
+    #print(month)
+    #N = d + 2m + [3(m+1)/5] + y + [y/4] - [y/100] + [y/400] +2
+    n1 = int(date + 2*month + year + 2)
+    #print(n1)
+    n2 = int(((3*(month+1))-((3*(month+1))%5))/5)
+    #print(n2)
+    n3 = int((year-(year%4))/4)
+    #print(n3)
+    n4 = int((year-(year%100))/100)
+    n5 = int((year-(year%400))/400)
+    dayis = n1+n2+n3-n4+n5
+    print(dayis)
+    if (dayis%7) ==1:
         return('sunday')
+    elif (dayis%7) ==2:
+        return('monday')
+    elif (dayis%7) ==3:
+        return('tuesday')
+    elif (dayis%7) ==4:
+        return('wednesday')
+    elif (dayis%7) ==5:
+        return('thursday')
+    elif (dayis%7) ==6:
+        return('friday')
+    elif (dayis%7) ==0:
+        return('saturday')
+
 
 
 
 leapdays = [31,29,31,30,31,30,31,31,30,31,30,31]
 nonleapdays = [31,28,31,30,31,30,31,31,30,31,30,31]
 start = 1900
-end = (fin.readline)
+end = fin.readline()
 output = {"monday":0,
           "tuesday":0,
           "wednesday":0,
@@ -63,19 +76,24 @@ output = {"monday":0,
           "friday":0,
           "saturday":0,
           "sunday":0}
-for v in str(start),str(end):
+
+for v in range(start, start + int(end)+1):
     if checkIfLeapYear(v):
         months = leapdays
     else:
         months = nonleapdays
-    countwr = 1
-    for mounth in v:
-        for day in months:
+
+    for month in months:
+        for day in range(1,month+1):
             if day ==13:
-                print(whichday)
+                dayitis = whichday(day,v,month)
+                output[dayitis] += 1
+
+print(output)
 
 
-        countwr +=1
+
+
 
 
 
